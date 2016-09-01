@@ -147,7 +147,7 @@ Define simp_cp : tm -> tm -> prop by
 % The constructor bn is used only in recursion over binders.
 
 Define copyterm : list sub_pair  -> tm -> tm -> prop by 
-  copyterm L (var X) T :=  
+  copyterm L (var X) T :=
     _if (det_mem (sub (var X) S) L)
         (T = S)
         (T = (var X)) ; 
@@ -164,7 +164,7 @@ Define copyterm : list sub_pair  -> tm -> tm -> prop by
   % Sign, Hash, Mac
   copyterm L (sign X Y) (sign U V) := copyterm L X U /\ copyterm L Y V;
   copyterm L (hs X) (hs U) := copyterm L X U;
-  copyterm L (mac X Y) (mac U V) := copyterm L X U /\ copyterm L Y V. 
+  copyterm L (mac X Y) (mac U V) := copyterm L X U /\ copyterm L Y V.
 
 % Generate an identity substitution from a list of variables.
 Define id_subst : list tm -> list sub_pair -> prop by  

@@ -45,7 +45,7 @@ print_bt_latex File (cons X L) :=
 
 Define bisim2latex : string -> prop -> prop
 by 
-bisim2latex File (bisim H P Q) :=
+bisim2latex File (bisim H P Q T1 T2) :=
  fprintstr File "Bi-trace: \n" /\ 
  print_bt_latex File H /\ 
  fprintstr File "\n" /\

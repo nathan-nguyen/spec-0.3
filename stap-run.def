@@ -1,0 +1,64 @@
+#include "src/defs/intruder.def".
+#include "src/defs/stap.def".
+
+Type a name.
+Type b name.
+Type c name.
+Type d name.
+Type n1 name.
+Type n2 name.
+
+% A <~ B
+
+Define test1 : prop by
+test1 :=
+  A = (en (var c) (var d)) /\
+  B = (pr (var c) (var d)) /\
+  P = (nu x\ nu k\
+    (outp (var a) (en x k) (outp (var b) (pr x k) zero)))
+  /\ print_term A /\ printstr " <~ " /\ print_term B /\ printstr "\n" /\ print_proc P /\ printstr "\n"
+  /\ forall T, get_trace P T -> stap A B T.
+
+Define test2 : prop by
+test2 :=
+  A = (pr (var c) (var d)) /\
+  B = (en (var c) (var d)) /\
+  P = (nu x\ nu k\
+    (outp (var a) (en x k) (outp (var b) (pr x k) zero)))
+  /\ print_term A /\ printstr " <~ " /\ print_term B /\ printstr "\n" /\ print_proc P /\ printstr "\n"
+  /\ forall T, get_trace P T -> stap A B T.
+
+Define test3 : prop by
+test3 :=
+  A = (sign (var c) (var d)) /\
+  B = (en (var c) (var d)) /\
+  P = (nu x\ nu k\
+    (outp (var a) (en x k) (outp (var b) (pr x k) zero)))
+  /\ print_term A /\ printstr " <~ " /\ print_term B /\ printstr "\n" /\ print_proc P /\ printstr "\n"
+  /\ forall T, get_trace P T -> stap A B T.
+
+
+
+Define test4 : prop by
+test4 :=
+  A = (sign (var c) (var d)) /\
+  B = (en (var c) (var d)) /\
+  P = (nu x\ nu k\
+    (outp (nm a) (en x k) (outp (var b) (pr x k) zero)))
+  /\ print_term A /\ printstr " <~ " /\ print_term B /\ printstr "\n" /\ print_proc P /\ printstr "\n"
+  /\ forall T, get_trace P T -> stap A B T.
+
+Define test5 : prop by
+test5 :=
+  A = (sign (var c) (var d)) /\
+  B = (en (var c) (var d)) /\
+  P = (nu x\ nu k\
+    (outp (nm a) (en x k) (outp (nm b) (pr x k) zero)))
+  /\ print_term A /\ printstr " <~ " /\ print_term B /\ printstr "\n" /\ print_proc P /\ printstr "\n"
+  /\ forall T, get_trace P T -> stap A B T.
+
+Define test6 : A -> A -> prop by
+test6 A B :=
+  print A /\ print B.
+
+%stap(enc(c,d), <c,d>, nu(m,k).a<enc(m,k)>.b<<m,k>>);

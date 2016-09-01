@@ -22,7 +22,6 @@
 #include "print_text.def".
 #include "bisim2text.def".
 #include "bisim2latex.def".
-#include "trace.def".
 #include "keycycle.def".
 #include "stap.def".
 
@@ -42,7 +41,7 @@ agent_def X Y := false.
 
 Define show_bisim : string -> prop -> prop
 by 
-show_bisim N (bisim H P Q) := 
+show_bisim N (bisim H P Q T1 T2) := 
      printstr N /\ printstr ". \n" /\
      printstr "Bitrace: " /\ print_bitrace H /\ printstr "\n" /\
      printstr "First process: " /\ print_proc P /\ printstr "\n" /\
@@ -268,7 +267,7 @@ bisim_def H (defProc P) (defProc Q) :=
   print_proc R /\ printstr "\n" /\
   printstr " and \n" /\ 
   print_proc T /\ printstr "\n" /\
-  bisim H R T.
+  bisim H R T emp emp.
 
 % Add key cycle
 Define  keycycle_def : def_body -> prop by
@@ -298,4 +297,5 @@ stap_def (defTerm A) (defTerm B) (defProc P) :=
   expand_defs P R /\
   printstr "A: " /\ print_term A /\ printstr "\nB: " /\ print_term B /\ printstr "\nP: " /\ print_proc R /\ printstr "\n"
   /\ forall T, get_trace R T -> stap A B T.
+
 

@@ -191,7 +191,7 @@ by
 Define taus : proc -> proc -> prop,
        tausAgent : agent -> agent -> prop
 by
-  taus P QQ := one P tau Q /\ taus Q QQ ; 
+  taus P QQ := one P tau Q /\ taus Q QQ ;
   taus P P;
   tausAgent (abs A) (abs B) := nabla x, taus (A x) (B x) ;
   tausAgent (con M A) (con M B) := taus A B ;
@@ -202,7 +202,7 @@ by
 
 Define progressing_one : proc -> action -> proc -> prop,
        progressing_oneAbs : proc -> action -> agent -> prop,   
-       progressing_oneCon : proc -> action -> agent -> prop    
+       progressing_oneCon : proc -> action -> agent -> prop
 by
   progressing_one Q A P := taus Q QQ /\ one QQ tau P ; 
   progressing_oneAbs Q A P := taus Q QQ /\ oneAbs QQ A PP /\ tausAgent PP P ;

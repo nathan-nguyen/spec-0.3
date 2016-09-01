@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SPEC                                                                     
-% Copyright (C) 2011-2016 Alwen Tiu                                        
+% Copyright (C) 2011-2016 Alwen Tiu, Ross Horne, Nam Nguyen                
 %
 % This program is free software; you can redistribute it and/or modify     
 % it under the terms of the GNU General Public License as published by     
@@ -328,7 +328,6 @@ detect_keycycle_trace T :=
     copylist Sol In Out /\		% Do the consistent substitution
     get_solved_form_substitution Ds NewSol /\
     copylist NewSol Out Out1 /\
-    key_cycle_detection Out1
-    %/\ printstr "\nSolved forms :\n" /\ print_list_cst Ds /\ printstr "\n" /\
-    %printstr "\nOutput Messages :\n" /\ print_list Out /\ printstr "\n"
-.
+    key_cycle_detection Out1 /\
+    printstr "\nSolved forms :\n" /\ print_list_cst Ds /\ printstr "\n" /\
+    printstr "\nOutput Messages :\n" /\ print_list Out /\ printstr "\n".

@@ -39,7 +39,7 @@ print_bt_text File (cons X L) :=
 
 Define bisim2text : string -> prop -> prop
 by 
-bisim2text File (bisim H P Q) :=
+bisim2text File (bisim H P Q T1 T2) :=
  fprintstr File "Bi-trace: \n" /\  
  print_bt_text File H /\  
  fprintstr File "First process: \n" /\  
